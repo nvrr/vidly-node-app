@@ -1,11 +1,7 @@
 
-const {Genre,validate} = require('../models/genres')
+const {Genre,validate} = require('../models/genre')
 const express = require('express')
 const router = express.Router();
-
-
-
-
 
 //Routes
 
@@ -22,7 +18,7 @@ router.post('/', async (req, res) => {
     let genre = new Genre({
         name: req.body.name
     });
-   genere = await genre.save()
+   genre = await genre.save()
     res.send(genre);
 });
 
@@ -56,10 +52,6 @@ router.get('/:id', async (req,res)=>{
 
     res.send(genre)
 })
-
-
-
-
 
 module.exports = router;
 
