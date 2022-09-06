@@ -24,6 +24,6 @@ function validateGeneres(genre){
     return schema.validate(genre)
 }
 
-exportd.genereSchema = genereSchema;
+exports.genereSchema = genereSchema;
 exports.Genre = Genre;
-exportd.validate = validateGeneres;
+exports.validate = validateGeneres;

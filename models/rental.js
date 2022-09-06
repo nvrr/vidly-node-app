@@ -66,6 +66,6 @@ function validateRentals(rental){
     return schema.validate(rental)
 }
 
-exportd.rentalSchema = rentalSchema;
+exports.rentalSchema = rentalSchema;
 exports.Rental = Rental;
-exportd.validate = validateRentals;
+exports.validate = validateRentals;

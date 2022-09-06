@@ -48,4 +48,4 @@ function validateMovies(movie){
 
 
 exports.Movie = Movie;
-exportd.validate = validateMovies;
+exports.validate = validateMovies;
