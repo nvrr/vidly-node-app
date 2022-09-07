@@ -1,6 +1,5 @@
 
 const Joi = require('joi')
-Joi.objectId = requre('joi-objectid')(Joi)
 const mongoose = require("mongoose");
 
 //** Schemaa */

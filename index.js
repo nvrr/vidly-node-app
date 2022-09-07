@@ -1,14 +1,18 @@
+const Joi = require('joi')
+Joi.objectId = requre('joi-objectid')(Joi)
 const mongoose = require("mongoose");
+const rentals = require('./routes/rentals')
+const movies = require('./routes/movies')
+const customers = require('./routes/customers')
+const genres = require('./routes/genres')
+const express = require('express')
+const app = express();
+
 mongoose.connect("mongodb://localhost/vidly")
  .then(() => console.log("Connected to mongoDB courses ..."))
  .catch((err) => console.error("Couldnt connect to db...",err));
 
- const rentals = require('./routes/rentals')
- const movies = require('./routes/movies')
- const customers = require('./routes/customers')
-const genres = require('./routes/genres')
-const express = require('express')
-const app = express()
+
 
 //*middleware
 app.use(express.json());
