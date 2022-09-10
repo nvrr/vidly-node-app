@@ -42,25 +42,25 @@ router.post('/', async (req, res) => {
        }
     });
 
-    rental = await rental.save()
+   //  rental = await rental.save()
 
-    movie.numberInStock--;
-    movie.save();
+   //  movie.numberInStock--;
+   //  movie.save();
 
-    //* Transactions or Two Phase commit
-   // try {
-   //  new Fawn.Task()
-   //    .save('rentals',rental)
-   //    .update('movies', {_id: movie._id}, {
-   //      $inc: {numberInStock: -1}
-   //      })
-   //    .run()
+   //  * Transactions or Two Phase commit
+   try {
+    new Fawn.Task()
+      .save('rentals',rental)
+      .update('movies', {_id: movie._id}, {
+        $inc: {numberInStock: -1}
+        })
+      .run()
 
-   // res.send(rental);
-   // } 
-   // catch(e) {
-   //  res.status(500).send('Something failed.',e)
-   // }
+   res.send(rental);
+   } 
+   catch(e) {
+    res.status(500).send('Something failed.',e)
+   }
 
    // async function addRental(){
    //    const session = await mongoose.startSession()
