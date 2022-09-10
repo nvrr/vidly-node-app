@@ -7,9 +7,9 @@ const mongoose = require('mongoose')
 const express = require('express')
 const router = express.Router();
 
-Fawn.init(mongoose);
+// Fawn.init(mongoose);
 //Directly connecteing to mongoDb bcz above one throws error
-// Fawn.init("mongodb://localhost:27017//vidly")
+Fawn.init("mongodb://127.0.0.1:27017/vidly")
 
 //Routes
 router.get('/', async (req,res)=>{
@@ -42,25 +42,46 @@ router.post('/', async (req, res) => {
        }
     });
 
-    // rental = await rental.save()
+    rental = await rental.save()
 
-    // movie.numberInStock--;
-    // movie.save();
+    movie.numberInStock--;
+    movie.save();
 
     //* Transactions or Two Phase commit
-   try {
-    new Fawn.Task()
-      .save('rentals',rental)
-      .update('movies', {_id: movie._id}, {
-        $inc: {numberInStock: -1}
-        })
-      .run()
+   // try {
+   //  new Fawn.Task()
+   //    .save('rentals',rental)
+   //    .update('movies', {_id: movie._id}, {
+   //      $inc: {numberInStock: -1}
+   //      })
+   //    .run()
 
-   res.send(rental);
-   } 
-   catch(e) {
-    res.status(500).send('Something failed.',e)
-   }
+   // res.send(rental);
+   // } 
+   // catch(e) {
+   //  res.status(500).send('Something failed.',e)
+   // }
+
+   // async function addRental(){
+   //    const session = await mongoose.startSession()
+   //    await session.startTransaction();
+   //    try {
+   //       await rental.save({session});
+   //       await movie.updateOne({ $inc: { numberInStock: -1 } }, {session});
+   //       await session.commitTransaction();
+   //       session.endSession();
+   //       console.log('Success');
+   //       res.send(rental)
+   //    }
+   //    catch(e){
+   //       await session.abortTransaction();
+   //       session.endSession();
+   //       console.log('Error in Transaction:', e.message);
+   //    }
+   // }
+
+
+   // addRental()
 });
 
 module.exports = router;

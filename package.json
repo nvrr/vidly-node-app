@@ -11,7 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.18.1",
-    "fawn": "^2.1.5",
+    "fawn": "^2.0.3",
     "joi": "^17.6.0",
     "joi-objectid": "^4.0.2",
     "mongoose": "^6.5.4",
