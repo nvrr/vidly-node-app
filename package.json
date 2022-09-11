@@ -14,6 +14,7 @@
     "fawn": "^2.0.3",
     "joi": "^17.6.0",
     "joi-objectid": "^4.0.2",
+    "loadash": "^1.0.0",
     "mongoose": "^6.5.4",
     "node-modules": "^1.0.1"
   }

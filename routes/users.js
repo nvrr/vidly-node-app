@@ -1,6 +1,8 @@
+
+const _ = require('loadash')
+const {User,validate} = require('../models/user');
 const express = require('express');
 const router = express.Router();
-const {User,validate} = require('../models/user');
 
 
 router.post('/', async (req, res) => {
@@ -18,7 +20,10 @@ router.post('/', async (req, res) => {
     });
 
     await user.save()
-    res.send(user);
+    res.send({
+        name:user.name,
+        emsil: user.email
+    });
 });
 
 module.exports = router;
