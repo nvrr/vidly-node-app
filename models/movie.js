@@ -4,7 +4,7 @@ const {genereSchema} = require('./genre')
 
 
 //** Schemaa */
-const moviesSchema =  mongoose.Schema({
+const moviesSchema = new mongoose.Schema({
     title: {
         type:String,
         required: true,
