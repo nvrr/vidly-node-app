@@ -1,9 +1,10 @@
 
+const auth = require('../middleware/auth')
 const {Rental, validate} = require('../models/rental')
 const {Movie} = require('../models/movie');
 const {Customer} = require('../models/customer')
 const Fawn = require('fawn');
-const express = require('express')
+const express = require('express');
 const router = express.Router();
 
 // Fawn.init(mongoose);
@@ -16,7 +17,7 @@ router.get('/', async (req,res)=>{
     res.send(rentals)
 })
 
-router.post('/', async (req, res) => {
+router.post('/',auth, async (req, res) => {
     const {error} = validate(req.body)
     if(error) return res.status(400).send(error.details[0].message)
  
@@ -61,26 +62,7 @@ router.post('/', async (req, res) => {
     res.status(500).send('Something failed.',e)
    }
 
-   // async function addRental(){
-   //    const session = await mongoose.startSession()
-   //    await session.startTransaction();
-   //    try {
-   //       await rental.save({session});
-   //       await movie.updateOne({ $inc: { numberInStock: -1 } }, {session});
-   //       await session.commitTransaction();
-   //       session.endSession();
-   //       console.log('Success');
-   //       res.send(rental)
-   //    }
-   //    catch(e){
-   //       await session.abortTransaction();
-   //       session.endSession();
-   //       console.log('Error in Transaction:', e.message);
-   //    }
-   // }
 
-
-   // addRental()
 });
 
 module.exports = router;
