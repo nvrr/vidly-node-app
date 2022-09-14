@@ -7,9 +7,14 @@ const router = express.Router();
 
 //Routes
 
-router.get('/', async (req,res)=>{
-    const genres = await Genre.find().sort('name');
+router.get('/', async (req,res,next)=>{
+    try {
+        const genres = await Genre.find().sort('name');
     res.send(genres)
+    }
+    catch(e){
+        next(e)
+    }
 })
 
 router.post('/',auth, async (req, res) => {
