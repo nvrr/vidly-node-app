@@ -21,6 +21,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.5.4",
     "node-env-run": "^4.0.2",
-    "node-modules": "^1.0.1"
+    "node-modules": "^1.0.1",
+    "winston": "^3.8.2"
   }
 }

@@ -1,5 +1,6 @@
 
 require('express-async-errors')
+const winston = require('winston')
 const error = require('./middleware/error')
 
 const config = require('config')
@@ -14,6 +15,8 @@ const customers = require('./routes/customers')
 const genres = require('./routes/genres')
 const express = require('express')
 const app = express();
+
+winston.add(winston.transports.File, { filename: 'logfile.log'});
 
 if(!config.has('jwtPrivateKey')){
     console.log("jjjj:",config.has('jwtPrivateKey'));
