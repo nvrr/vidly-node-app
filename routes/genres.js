@@ -1,4 +1,3 @@
-const asyncMiddleware = require('../middleware/async')
 
 const admin = require('../middleware/admin')
 const auth = require('../middleware/auth')
@@ -8,15 +7,15 @@ const router = express.Router();
 
 //Routes
 
-router.get('/', asyncMiddleware(async (req,res,next)=>{
+router.get('/', async (req,res,next)=>{
    
         const genres = await Genre.find().sort('name');
     res.send(genres)
     
     
-}))
+})
 
-router.post('/',auth, asyncMiddleware(async (req, res) => {
+router.post('/',auth, async (req, res) => {
 
     const {error} = validate(req.body)
     if(error) return res.status(400).send(error.details[0].message)
@@ -26,7 +25,7 @@ router.post('/',auth, asyncMiddleware(async (req, res) => {
     });
     await genre.save()
     res.send(genre);
-}));
+});
 
 router.put('/:id',auth, async (req, res) => { 
     const {error} = validate(req.body)
