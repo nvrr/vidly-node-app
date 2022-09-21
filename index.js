@@ -18,6 +18,12 @@ const express = require('express')
 const { MongoDB } = require('winston/lib/winston/transports')
 const app = express();
 
+process.on('uncaughtException', (ex) => {
+    console.log('WE GOT AN UNCAUGHT EXCEPTION');
+    winston.error(ex.message, ex)
+} )
+
+//*** only particular to express ,outside of express not useful */
 winston.add(winston.transports.File, { filename: 'logfile.log'});
 winston.add(winston.transports.MongoDB, {db:'mongodb://localhost/vidly', level:'error'})
 
