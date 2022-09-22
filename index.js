@@ -18,6 +18,8 @@ const express = require('express')
 const { MongoDB } = require('winston/lib/winston/transports')
 const app = express();
 
+require('./startup/routes')(app)
+
 
 //* best practice is using winston for uncaughtExceptions
 winston.handleExceptions(
@@ -57,24 +59,7 @@ mongoose.connect("mongodb://localhost/vidly")
  .then(() => console.log("Connected to mongoDB courses ..."))
  .catch((err) => console.error("Couldnt connect to db...",err));
 
-//*middleware
-app.use(express.json());
-// Built-in Middleware wit tis we can pass arrays ,comples objects
-app.use(express.urlencoded({extended: true}))
 
-
-// app.get('/', (req,res)=>{
-//     res.send('Hello expressjs')
-// })
-
-app.use('/api/genres', genres);
-app.use('/api/customers', customers);
-app.use('/api/movies', movies);
-app.use('/api/rentals', rentals);
-app.use('/api/users', users);
-app.use('/api/auth', auth);
-
-app.use(error)
 
 const port = process.env.PORT || 3000;
 app.listen(port, ()=> console.log(`listening on ${port} port....`))
