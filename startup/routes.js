@@ -7,7 +7,7 @@ const rentals = require('../routes/rentals')
 const movies = require('../routes/movies')
 const customers = require('../routes/customers')
 const genres = require('../routes/genres')
-
+const error = require('../middleware/error')
 
 module.exports = function(app){
     //*middleware

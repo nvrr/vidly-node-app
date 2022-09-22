@@ -1,4 +1,4 @@
-
+ 
 const admin = require('../middleware/admin')
 const auth = require('../middleware/auth')
 const {Genre,validate} = require('../models/genre')
@@ -8,8 +8,9 @@ const router = express.Router();
 //Routes
 
 router.get('/', async (req,res,next)=>{
-   
-        const genres = await Genre.find().sort('name');
+   throw new Error('Could not get the genres')
+
+    const genres = await Genre.find().sort('name');
     res.send(genres)
     
     
