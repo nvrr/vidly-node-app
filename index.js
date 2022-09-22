@@ -2,24 +2,18 @@
 require('express-async-errors')
 const winston = require('winston')
 require('winston-mongodb')
-const error = require('./middleware/error')
+
 
 const config = require('config')
 const Joi = require('joi')
 Joi.objectId = require('joi-objectid')(Joi)
-const mongoose = require("mongoose");
-const users = require('./routes/users')
-const auth = require('./routes/auth')
-const rentals = require('./routes/rentals')
-const movies = require('./routes/movies')
-const customers = require('./routes/customers')
-const genres = require('./routes/genres')
+
 const express = require('express')
 const { MongoDB } = require('winston/lib/winston/transports')
 const app = express();
 
 require('./startup/routes')(app)
-
+require('./startup/db')()
 
 //* best practice is using winston for uncaughtExceptions
 winston.handleExceptions(
@@ -54,10 +48,6 @@ if(!config.has('jwtPrivateKey')){
     console.error('FAAL ERROR: jwtPrivateKey is not defined.')
     process.exit(1);
 }
-
-mongoose.connect("mongodb://localhost/vidly")
- .then(() => console.log("Connected to mongoDB courses ..."))
- .catch((err) => console.error("Couldnt connect to db...",err));
 
 
 
